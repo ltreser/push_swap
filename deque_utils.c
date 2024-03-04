@@ -22,10 +22,10 @@ void    print_deque(t_deque *deque)
         return ;
     i = -1;
     travel = deque->head;
-	printf("print\n");
+	//printf("print\n");
     while (++i < deque->size)
     {
-        printf("node %d: %ld\n", i, travel->value);
+        printf("node %d: %ld, ", i, travel->value);
         //printf("target_pos %d: %d\n", i, travel->target_pos);
 		//printf("node %d: %ld ", i, travel->value);     
 		//printf("address %p ", travel);
@@ -33,6 +33,7 @@ void    print_deque(t_deque *deque)
         //printf("nex %p\n", travel->next);
         travel = travel->next;
     }
+    printf("\n");
 	/*i = -1;
 	printf("revprint\n");
 	while (++i < deque->size)

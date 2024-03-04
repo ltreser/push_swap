@@ -57,7 +57,7 @@ void pb(t_deque *a, t_deque *b, char *print_flag)
 
 void	push_last(t_deque *b, t_deque *a)
 {
-	printf("enters push_last\n");
+	//printf("enters push_last\n");
 	a->tail->next = b->head;
 	a->head->prev = b->head;
 	b->head->next = a->head;

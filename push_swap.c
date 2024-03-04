@@ -14,9 +14,9 @@
 
 void sleep_test(t_all *all)
 {
-	int i;
+	//int i;
 
-	i = 0;
+	//i = (all->a->size_total / 2) + all->lis->count;
 	/*while (i < all->a->size)
 	{
 		printf("array: %d\n", all->lis->array[i]);
@@ -32,11 +32,22 @@ void sleep_test(t_all *all)
 	{
 		if (all->a->head->sleep)
 			ra(all->a, 1, "ra");
-		else
+		else if ((all->a->size_total / 2) < all->a->size && all->a->head->value < ((all->a->size - all->lis->count) / 2))
+			ra(all->a, 1, "ra");
+		else if ((all->a->size_total / 2) < all->a->size && all->a->head->value > ((all->a->size - all->lis->count) / 2))
 			pb(all->a, all->b, "pb");
+		else if (all->a->size > all->a->size_total / 2 && all->a->head->value > all->a->size_total / 2)
+		{
+				pb(all->a, all->b, "pb");
+				ra(all->a, 1, "ra");
+		}
+		else 
+				pb(all->a, all->b, "pb");
 		if (all->a->size == all->lis->count)
 			break ;
+
 	}
+
 	/*printf("lis size: %d\n", all->lis->count);
 	printf("a size before loop: %d\n", all->a->size);
 	printf("b size before loop:: %d\n", all->b->size);
@@ -54,5 +65,6 @@ void	push_swap(t_all *all)
 	put_to_sleep(all->a, all->lis);
 	sleep_test(all);
 	back_to_a(all);
+	stack_sorted(all->a);
 	return ;
 }

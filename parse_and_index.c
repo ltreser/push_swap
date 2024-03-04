@@ -64,10 +64,8 @@ void normalize_by_index(int size, t_all *all)
 int	duplicate_found(int *array, int n, int size)
 {
 	int i;
-	int count;
 
 	i = 0;
-	count = size;
 	if (!array)
 		return (0);
 	while (size--)

@@ -58,6 +58,7 @@ void	ra(t_deque *a, int times, char *print_flag)
 		//check_links(a, "ra", "a");
 		print_moves(print_flag);
 	}
+	//printf("a->head: %ld\n", a->head->value);
 }
 
 void	rb(t_deque *b, int times, char *print_flag)
@@ -71,6 +72,7 @@ void	rb(t_deque *b, int times, char *print_flag)
 		//check_links(b, "rb", "b");
 		print_moves(print_flag);
 	}
+	//printf("b->head: %ld\n", b->head->value);
 }
 
 void	rr(t_deque *a, t_deque *b, int times, char *print_flag)
@@ -84,13 +86,15 @@ void	rr(t_deque *a, t_deque *b, int times, char *print_flag)
 		}
 		if (b)
 		{
-			b->tail = a->head;
+			b->tail = b->head;
 			b->head = b->tail->next;
 		}
 		//check_links(a, "rr", "a");
 		//check_links(b, "rr", "b");
 		print_moves(print_flag);
 	}
+	//printf("a->head: %ld\n", a->head->value);
+	//printf("b->head: %ld\n", b->head->value);
 }
 
 void	rra(t_deque *a, int times, char *print_flag)
@@ -99,8 +103,6 @@ void	rra(t_deque *a, int times, char *print_flag)
 		return ;
 	while (times && times--)
 	{
-		if (times > 100)
-			printf("times > 100\n");
 		a->head = a->tail;
 		a->tail = a->tail->prev;
 		//check_links(a, "rra", "a");
@@ -119,5 +121,6 @@ void	rrb(t_deque *b, int times, char *print_flag)
 		//check_links(b, "rrb", "b");
 		print_moves(print_flag);
 	}
+	//printf("b->head: %ld\n", b->head->value);
 }
 

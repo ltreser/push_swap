@@ -19,17 +19,19 @@ void rrr(t_deque *a, t_deque *b, int times, char *print_flag)
 		if (a)
 		{
 			a->head = a->head->prev;
-			a->tail = a->head->prev;
+			a->tail = a->tail->prev;
 		}
 		if (b)
 		{
 			b->head = b->head->prev;
-			b->tail = b->head->prev;
+			b->tail = b->tail->prev;
 		}
 		//check_links(a, "rrr", "a");
 		//check_links(b, "rrr", "b");
 		print_moves(print_flag);
 	}
+	//printf("a->head: %ld\n", a->head->value);
+	//printf("b->head: %ld\n", b->head->value);
 }
 
 void sa(t_deque *a, char *print_flag)

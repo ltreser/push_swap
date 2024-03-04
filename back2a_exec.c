@@ -20,13 +20,16 @@ void	low_placement(t_all *all, t_node *travel)
 	//printf("size->a: %d\n", all->a->size);
 	rot_a = all->a->size - travel->target_pos;
 	rot_b = all->b->size - travel->index;
-	while (rot_a && rot_b && rot_a-- & rot_b--)
+	while (rot_a && rot_b && rot_a-- && rot_b--)
 		rrr(all->a, all->b, 1, "rrr");
 	if (rot_b)
 		rrb(all->b, rot_b, "rrb");
 	else if (rot_a)
 	{
 		//printf("enters in low placement\n");
+		//printf("all->a->size: %d\n", all->a->size);
+                //printf("travel->target_pos: %d\n", travel->target_pos);
+                //printf("amount of rra: %d\n", all->a->size - travel->target_pos);
 		rra(all->a, rot_a, "rra");
 	}
 	pa(all->b, all->a, "pa");
@@ -52,10 +55,9 @@ void	mixed_placement(t_all *all, t_node *travel)
 	}
 	else
 	{
-		printf("all->a->size: %d\n", all->a->size);
-		printf("travel->target_pos: %d\n", travel->target_pos);
-		printf("amount of rra: %d\n", all->a->size - travel->target_pos);
-		exit (0);
+		//printf("all->a->size: %d\n", all->a->size);
+		//printf("travel->target_pos: %d\n", travel->target_pos);
+		//printf("amount of rra: %d\n", all->a->size - travel->target_pos);
 		rb(all->b, travel->index, "rb");
 		rra(all->a, (all->a->size - travel->target_pos), "rra");
 		//printf("enters in mixed placement\n");

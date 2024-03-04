@@ -17,6 +17,11 @@ void get_ideal_lis(t_all *all)
 	int i;
 
 	i = 0;
+	//if (all->a->size->total > 999)
+	//{
+	//	find_lis(all->lis, all->a->size_total)
+	//	return ;
+	//}
 	while (i < all->a->size) 
 	{
 		find_lis(all->lis, all->a->size_total);

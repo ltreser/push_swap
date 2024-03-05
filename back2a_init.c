@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 00:02:59 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/02 23:02:14 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/05 03:48:19 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ void	back_to_a(t_all *all)
 		calculate_price(all);
 		push_to_a(all);
 	}
+	put_index(all->a);
 	if (all->a->head->value == 0)
 		return ;
-	while (travel->value) //get right later
+	while (1) //get right later
 	{
 		travel = travel->next;
 		if (travel->value == 0)
@@ -172,16 +173,18 @@ void	calculate_price(t_all *all)
 	best_price = 1000000;
 	travel = all->b->head;
 	while (i < all->b->size)
-	{
-		dir = 0;
-		travel->push_price = find_price(all, travel, &dir, (all->a->size / 2));
-		if (travel->push_price < best_price)
-		{
-			best_price = travel->push_price;
-			all->b->cheapest_index = travel->index;
-			all->b->cheapest_todo = dir;
-		}
-		travel = travel->next;
-		i++;
-	}
+    {
+        dir = 0;
+        travel->push_price = find_price(all, travel, &dir, (all->a->size / 2));
+        if (travel->push_price < best_price)
+        {
+            best_price = travel->push_price;
+            all->b->cheapest_index = travel->index;
+            all->b->cheapest_todo = dir;
+        }
+        travel = travel->next;
+        i++;
+    }
+
+	
 }

@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 05:30:38 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/02 23:27:41 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/05 03:28:45 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,19 @@ void sleep_test(t_all *all)
 	}*/
 	while (all->a->size >= all->lis->count)
 	{
-		if (all->a->head->sleep)
+		calculate_average(all->a, all->lis->count);
+		//printf("average: %d\n", all->a->average);
+		//exit (0);
+		if (!all->a->head->sleep && all->a->head->value < all->a->average / 2.3)
+		{
+			pb(all->a, all->b, "pb");
+            rb(all->b, 1, "rb");
+		}
+		else if (!all->a->head->sleep && all->a->head->value < all->a->average)
+            pb(all->a, all->b, "pb");
+		else
 			ra(all->a, 1, "ra");
-		else if ((all->a->size_total / 2) < all->a->size && all->a->head->value < ((all->a->size - all->lis->count) / 2))
+		/*else if ((all->a->size_total / 2) < all->a->size && all->a->head->value < ((all->a->size - all->lis->count) / 2))
 			ra(all->a, 1, "ra");
 		else if ((all->a->size_total / 2) < all->a->size && all->a->head->value > ((all->a->size - all->lis->count) / 2))
 			pb(all->a, all->b, "pb");
@@ -42,7 +52,7 @@ void sleep_test(t_all *all)
 				ra(all->a, 1, "ra");
 		}
 		else 
-				pb(all->a, all->b, "pb");
+				pb(all->a, all->b, "pb");*/
 		if (all->a->size == all->lis->count)
 			break ;
 

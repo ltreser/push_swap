@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 20:25:49 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/02 23:07:28 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/04 23:00:03 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ struct s_deque
 	int max;
 	int	cheapest_index;
 	int cheapest_todo;
+	int average;
 } ;
 
 struct s_all
@@ -140,6 +141,7 @@ void    push_to_a(t_all *all);
 void    mixed_placement(t_all *all, t_node *travel);
 void    high_placement(t_all *all, t_node *travel);
 void    low_placement(t_all *all, t_node *travel);
+void    calculate_average(t_deque *deque, int lis_size);
 
 
 

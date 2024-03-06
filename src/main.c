@@ -86,8 +86,11 @@ int	argument_error(int i, char **av, t_all *all, int j)
 		exit (0);
 	if (1 == i && (free(all), 1))
 		exit (0);
-    if (2 == i && (write(1, "already sorted\n", 14), free(all), 1))
+    if (2 == i && write(1, "already sorted\n", 14))
+    {
+		free(all);
 		exit(0);
+	}	
 	i = 0;
 	while (av[i] && (av[i][j]))
 	{

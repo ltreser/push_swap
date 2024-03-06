@@ -31,15 +31,13 @@ void sleep_test(t_all *all, double divider)
 	while (all->a->size >= all->lis->count)
 	{
 		calculate_average(all->a, all->lis->count);
-		//printf("average: %d\n", all->a->average);
-		//exit (0);
 		if (!all->a->head->sleep && all->a->head->value < all->a->average / divider)
 		{
 			all->new_ins[all->i++] = pb(all->a, all->b, "pb");
-            all->new_ins[all->i++] = rb(all->b, 1, "rb");
+        		all->new_ins[all->i++] = rb(all->b, 1, "rb");
 		}
 		else if (!all->a->head->sleep && all->a->head->value < all->a->average)
-            all->new_ins[all->i++] = pb(all->a, all->b, "pb");
+            		all->new_ins[all->i++] = pb(all->a, all->b, "pb");
 		else
 			all->new_ins[all->i++] = ra(all->a, 1, "ra");
 		/*else if ((all->a->size_total / 2) < all->a->size && all->a->head->value < ((all->a->size - all->lis->count) / 2))
@@ -69,8 +67,11 @@ void sleep_test(t_all *all, double divider)
 	}*/
 }
 
-void	push_swap(t_all *all)
+/*void	push_swap(t_all *all)
 {
+	int i;
+
+	i = -1;
 	double divider;
 
 	divider = 2.3;
@@ -82,17 +83,19 @@ void	push_swap(t_all *all)
 	//check_best_moves(all);
 	//divider += 0.1;
 //	}
-	decode_and_print(all, -1);
-	printf("operations: %d\n", all->instruction_count);
-}
+	while (all->new_ins[++i])
+		printf("new_ins[%d] = %c\n", i, all->new_ins[i]);
+	//decode_and_print(all, -1);
+	//printf("operations: %d\n", all->instruction_count);
+}*/
 	
 
 
-/*void	push_swap(t_all *all)
+void	push_swap(t_all *all)
 {
 	put_to_sleep(all->a, all->lis);
-	sleep_test(all);
+	sleep_test(all, 2.2);
 	back_to_a(all);
 	//stack_sorted(all->a);
 	return ;
-}*/
+}

@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <limits.h>
-# include "libft/includes/libft.h"
+# include "../libft/includes/libft.h"
 
 typedef struct s_all t_all;
 typedef	struct s_node t_node;

@@ -37,9 +37,9 @@ void	back_to_a(t_all *all)
 			break ;
 	}
 	if (travel->lower_half)
-		all->new_ins[all->i++] = rra(all->a, all->a->size - travel->index, "rra");
+		rra(all->a, (all->a->size - travel->index), "rra");
 	else
-		all->new_ins[all->i++] = ra(all->a, travel->index, "ra");
+		ra(all->a, travel->index, "ra");
 	//print_deque(all->a);
 	//while (all->a->head->value > 0)
 	//	ra(all->a, 1, "ra");

@@ -18,9 +18,7 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*jointstring;
-	size_t	i;
-
-	i = 0;
+	
 	jointstring = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!jointstring)
 		return (0);

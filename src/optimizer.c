@@ -72,7 +72,7 @@ void	check_best_moves(t_all *all)
 
 void	decode_and_print(t_all *all, int i) // pass iterator initialized to -1
 {
-	write(1, "instructions should start here:\n", 34);
+	write(1, "instructions should start here:\n", 33);
 	all->instructions = all->new_ins;
 	while (all->instructions[++i])
 	{

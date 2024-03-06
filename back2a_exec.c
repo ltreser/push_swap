@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 03:41:20 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/02 23:52:48 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/06 01:40:16 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,48 +21,48 @@ void	low_placement(t_all *all, t_node *travel)
 	rot_a = all->a->size - travel->target_pos;
 	rot_b = all->b->size - travel->index;
 	while (rot_a && rot_b && rot_a-- && rot_b--)
-		rrr(all->a, all->b, 1, "rrr");
+		all->new_ins[all->i++] = rrr(all->a, all->b, 1, "rrr");
 	if (rot_b)
-		rrb(all->b, rot_b, "rrb");
+		all->new_ins[all->i++] = rrb(all->b, rot_b, "rrb");
 	else if (rot_a)
 	{
 		//printf("enters in low placement\n");
 		//printf("all->a->size: %d\n", all->a->size);
                 //printf("travel->target_pos: %d\n", travel->target_pos);
                 //printf("amount of rra: %d\n", all->a->size - travel->target_pos);
-		rra(all->a, rot_a, "rra");
+		all->new_ins[all->i++] = rra(all->a, rot_a, "rra");
 	}
-	pa(all->b, all->a, "pa");
+	all->new_ins[all->i++] = pa(all->b, all->a, "pa");
 }
 
 void	high_placement(t_all *all, t_node *travel)
 {
 	while (travel->index && travel->target_pos && travel->index-- && travel->target_pos--)
-		rr(all->a, all->b, 1, "rr");
+		all->new_ins[all->i++] = rr(all->a, all->b, 1, "rr");
 	if (travel->index)
-		rb(all->b, travel->index, "rb");
+		all->new_ins[all->i++] = rb(all->b, travel->index, "rb");
 	else if (travel->target_pos)
-		ra(all->a, travel->target_pos, "ra");
-	pa(all->b, all->a, "pa");
+		all->new_ins[all->i++] = ra(all->a, travel->target_pos, "ra");
+	all->new_ins[all->i++] = pa(all->b, all->a, "pa");
 }
 
 void	mixed_placement(t_all *all, t_node *travel)
 {
 	if (travel->lower_half)
 	{
-		rrb(all->b, (all->b->size - travel->index), "rrb");
-		ra(all->a, travel->target_pos, "ra");
+		all->new_ins[all->i++] = rrb(all->b, (all->b->size - travel->index), "rrb");
+		all->new_ins[all->i++] = ra(all->a, travel->target_pos, "ra");
 	}
 	else
 	{
 		//printf("all->a->size: %d\n", all->a->size);
 		//printf("travel->target_pos: %d\n", travel->target_pos);
 		//printf("amount of rra: %d\n", all->a->size - travel->target_pos);
-		rb(all->b, travel->index, "rb");
-		rra(all->a, (all->a->size - travel->target_pos), "rra");
+		all->new_ins[all->i++] = rb(all->b, travel->index, "rb");
+		all->new_ins[all->i++] = rra(all->a, (all->a->size - travel->target_pos), "rra");
 		//printf("enters in mixed placement\n");
 	}
-	pa(all->b, all->a, "pa");
+	all->new_ins[all->i++] = pa(all->b, all->a, "pa");
 }
 
 void	push_to_a(t_all *all)

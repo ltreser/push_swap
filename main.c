@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:25:28 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/02 20:00:39 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/05 21:44:24 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int	main(int ac, char **av)
 		else
 			push_swap(all);
 	}
+	printf("lis size: %d\n", all->lis->count);
 	free_all(all);
 	return (0);
 }

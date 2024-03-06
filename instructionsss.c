@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 19:11:22 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/02 23:22:10 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/05 23:29:43 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void init_p(t_deque *a, t_deque *b)
     }
 }
 
-void pb(t_deque *a, t_deque *b, char *print_flag)
+char pb(t_deque *a, t_deque *b, char *print_flag)
 {
 	if (a->size < 1)
-		return ;
+		return ('0');
 	if (b->size < 1)
 		init_p(a, b);
 	else if (1 == a->size)
@@ -53,6 +53,7 @@ void pb(t_deque *a, t_deque *b, char *print_flag)
 	//check_links(a, "pb", "a");
 	//check_links(b, "pb", "b");
 	print_moves(print_flag);
+	return ('B');
 }
 
 void	push_last(t_deque *b, t_deque *a)
@@ -67,10 +68,10 @@ void	push_last(t_deque *b, t_deque *a)
 	b->tail = NULL;
 }
 
-void pa(t_deque *b, t_deque *a, char *print_flag)
+char pa(t_deque *b, t_deque *a, char *print_flag)
 {
 	if (b->size < 1)
-		return ;
+		return ('0');
 	if (a->size < 1)
 		init_p(b, a);
 	else if (1 == b->size)
@@ -92,6 +93,7 @@ void pa(t_deque *b, t_deque *a, char *print_flag)
 	//check_links(a, "pa", "a");
 	//check_links(b, "pa", "b");
 	print_moves(print_flag);
+	return ('A');
 }
 
 void print_moves(char *print_flag)
@@ -99,8 +101,20 @@ void print_moves(char *print_flag)
 	int i;
 
 	i = 0;
-	if (!print_flag[i])
+	if (!print_flag[i]/* && all->size_total > 6*/)
 		return ;
+	/*if (!print_flag[i])
+	{
+		if (!all->new_ins)
+		{
+			all->new_ins = malloc(2 * sizeof(char));
+			all->new_ins[i++] = identifier;
+			all->new_ins[i] = '\0';
+		}
+		else 
+			all->new_ins = ft_strjoin(all_new_ins, &identifier);
+		all->new_ins_count++;
+	}*/
 	while (print_flag[i])
 	{
 		write(1, &print_flag[i], 1);

@@ -6,13 +6,13 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:01:42 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/02 23:19:42 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/05 23:50:42 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rrr(t_deque *a, t_deque *b, int times, char *print_flag)
+char rrr(t_deque *a, t_deque *b, int times, char *print_flag)
 {
 	while (times && times--)
 	{
@@ -30,14 +30,15 @@ void rrr(t_deque *a, t_deque *b, int times, char *print_flag)
 		//check_links(b, "rrr", "b");
 		print_moves(print_flag);
 	}
+	return ('9');
 	//printf("a->head: %ld\n", a->head->value);
 	//printf("b->head: %ld\n", b->head->value);
 }
 
-void sa(t_deque *a, char *print_flag)
+char sa(t_deque *a, char *print_flag)
 {
 	if (!a || a->size == 1)
-		return ;
+		return ('0');
 	if (a->size == 2)
 	{
 		a->tail = a->head;
@@ -55,12 +56,13 @@ void sa(t_deque *a, char *print_flag)
 	}
 	//check_links(a, "sa", "a");
 	print_moves(print_flag);
+	return ('1');
 }
 
-void sb(t_deque *b, char *print_flag)
+char sb(t_deque *b, char *print_flag)
 {
 	if (!b)
-		return ;
+		return ('0');
 	if (b->head->next->next == b->head)
 	{
 		b->tail = b->head;
@@ -78,9 +80,10 @@ void sb(t_deque *b, char *print_flag)
 	}
 	//check_links(b, "sb", "b");
 	print_moves(print_flag);
+	return ('2');
 }
 
-void ss(t_deque *a, t_deque *b, char *print_flag)
+char ss(t_deque *a, t_deque *b, char *print_flag)
 {
 	if (a)
 		sa(a, print_flag);
@@ -89,4 +92,5 @@ void ss(t_deque *a, t_deque *b, char *print_flag)
 	//check_links(a, "ss", "a");
 	//check_links(b, "ss", "b");
 	print_moves(print_flag);
+	return ('3');
 }

@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 20:25:49 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/04 23:00:03 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/06 01:18:34 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <limits.h>
+# include "libft/includes/libft.h"
 
 typedef struct s_all t_all;
 typedef	struct s_node t_node;
@@ -83,21 +84,25 @@ struct s_all
 	t_tiny 	*tiny;
 	t_row 	*lis;
 	int		size_total;
+	char	*instructions;
+	int		instruction_count;
+	char	*new_ins;
+	int		i;
 } ;
 
 long    ft_atol(const char *av);
 int		ft_isdigit(int c);
-void	ra(t_deque *a, int times, char *print_flag);
-void	rb(t_deque *b, int times, char *print_flag);
-void	rr(t_deque *a, t_deque *b, int times, char *print_flag);
-void	rra(t_deque *a, int times, char *print_flag);
-void	rrb(t_deque *b, int times, char *print_flag);
-void	rrr(t_deque *a, t_deque *b, int times, char *print_flag);
-void	sa(t_deque *a, char *print_flag);
-void	sb(t_deque *b, char *print_flag);
-void	ss(t_deque *a, t_deque *b, char *print_flag);
-void	pa(t_deque *b, t_deque *a, char *print_flag);
-void	pb(t_deque *a, t_deque *b, char *print_flag);
+char	ra(t_deque *a, int times, char *print_flag);
+char	rb(t_deque *b, int times, char *print_flag);
+char	rr(t_deque *a, t_deque *b, int times, char *print_flag);
+char	rra(t_deque *a, int times, char *print_flag);
+char	rrb(t_deque *b, int times, char *print_flag);
+char	rrr(t_deque *a, t_deque *b, int times, char *print_flag);
+char	sa(t_deque *a, char *print_flag);
+char	sb(t_deque *b, char *print_flag);
+char	ss(t_deque *a, t_deque *b, char *print_flag);
+char	pa(t_deque *b, t_deque *a, char *print_flag);
+char	pb(t_deque *a, t_deque *b, char *print_flag);
 void	init_p(t_deque *a, t_deque *b);
 void	print_moves(char *print_flag);
 int		stack_sorted(t_deque *a);
@@ -122,7 +127,7 @@ void    print_deque(t_deque *deque); //DELETE IT!
 void    init(t_all *all);
 void    push_last(t_deque *b, t_deque *a);
 void    push_swap(t_all *all);
-void 	sleep_test(t_all *all); //DELETE IT!
+void 	sleep_test(t_all *all, double divider); //DELETE IT!
 void 	put_to_sleep(t_deque *a, t_row *lis_a);
 void    init_lis(t_row *lis, int size);
 int		find_last(t_row *lis, int i, int j, int size);
@@ -142,6 +147,9 @@ void    mixed_placement(t_all *all, t_node *travel);
 void    high_placement(t_all *all, t_node *travel);
 void    low_placement(t_all *all, t_node *travel);
 void    calculate_average(t_deque *deque, int lis_size);
+void    decode_and_print(t_all *all, int i);
+void	check_best_moves(t_all *all);
+void	post_optimizer(t_all *all);
 
 
 

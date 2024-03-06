@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:19:21 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/02 23:47:17 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/05 23:49:55 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int		check_links(t_deque *a, char *name, char *stack)
 	return (printf("nah this one is fine\n"), 1);
 }
 
-void	ra(t_deque *a, int times, char *print_flag)
+char	ra(t_deque *a, int times, char *print_flag)
 {
 	if (!a)
-		return ;
+		return ('0');
 	if (!a->size || a->size < 2)
-		return ;
+		return ('0');
 	while (times && times--)
 	{
 		a->tail = a->head;
@@ -58,13 +58,14 @@ void	ra(t_deque *a, int times, char *print_flag)
 		//check_links(a, "ra", "a");
 		print_moves(print_flag);
 	}
+	return ('4');
 	//printf("a->head: %ld\n", a->head->value);
 }
 
-void	rb(t_deque *b, int times, char *print_flag)
+char	rb(t_deque *b, int times, char *print_flag)
 {
 	if (!b)
-		return ;
+		return ('0');
 	while (times && times--)
 	{
 		b->tail = b->head;
@@ -72,10 +73,11 @@ void	rb(t_deque *b, int times, char *print_flag)
 		//check_links(b, "rb", "b");
 		print_moves(print_flag);
 	}
+	return ('5');
 	//printf("b->head: %ld\n", b->head->value);
 }
 
-void	rr(t_deque *a, t_deque *b, int times, char *print_flag)
+char	rr(t_deque *a, t_deque *b, int times, char *print_flag)
 {
 	while (times && times--)
 	{
@@ -93,14 +95,15 @@ void	rr(t_deque *a, t_deque *b, int times, char *print_flag)
 		//check_links(b, "rr", "b");
 		print_moves(print_flag);
 	}
+	return ('6');
 	//printf("a->head: %ld\n", a->head->value);
 	//printf("b->head: %ld\n", b->head->value);
 }
 
-void	rra(t_deque *a, int times, char *print_flag)
+char	rra(t_deque *a, int times, char *print_flag)
 {
 	if (!a)
-		return ;
+		return ('0');
 	while (times && times--)
 	{
 		a->head = a->tail;
@@ -108,12 +111,13 @@ void	rra(t_deque *a, int times, char *print_flag)
 		//check_links(a, "rra", "a");
 		print_moves(print_flag);
 	}
+	return ('7');
 }
 
-void	rrb(t_deque *b, int times, char *print_flag)
+char	rrb(t_deque *b, int times, char *print_flag)
 {
 	if (!b)
-		return ;
+		return ('0');
 	while (times && times--)
 	{
 		b->head = b->tail;
@@ -121,6 +125,7 @@ void	rrb(t_deque *b, int times, char *print_flag)
 		//check_links(b, "rrb", "b");
 		print_moves(print_flag);
 	}
+	return ('8');
 	//printf("b->head: %ld\n", b->head->value);
 }
 

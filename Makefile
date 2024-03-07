@@ -15,7 +15,7 @@ HEADERS = $(addprefix $(INC_DIR), push_swap.h)
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -Iinclude/ -I/usr/include
+CFLAGS = -Wall -Werror -Wextra -g3 -Iinclude/ -I/usr/include
 
 LDLIBS = -lft
 

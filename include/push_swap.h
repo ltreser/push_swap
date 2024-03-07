@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 20:25:49 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/06 01:18:34 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/07 04:25:17 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ struct s_all
 	int		instruction_count;
 	char	*new_ins;
 	int		i;
+	double	divider;
 } ;
 
 long    ft_atol(const char *av);

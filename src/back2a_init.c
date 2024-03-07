@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 00:02:59 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/06 01:38:47 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/07 02:07:44 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	back_to_a(t_all *all)
 			break ;
 	}
 	if (travel->lower_half)
-		rra(all->a, (all->a->size - travel->index), "rra");
+		ft_memset(&all->new_ins[ft_strlen(all->new_ins)], rra(all->a, (all->a->size - travel->index), ""), (all->a->size - travel->index));
 	else
-		ra(all->a, travel->index, "ra");
+		ft_memset(&all->new_ins[ft_strlen(all->new_ins)], ra(all->a, travel->index, ""), travel->index);
 	//print_deque(all->a);
 	//while (all->a->head->value > 0)
 	//	ra(all->a, 1, "ra");

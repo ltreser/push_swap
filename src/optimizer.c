@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 23:54:18 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/07 04:51:30 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/09 05:47:36 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	check_best_moves(t_all *all)
 				all->instructions[i++] = all->new_ins[j];
 	}
 	free(all->new_ins);
-	all->new_ins = ft_calloc(15000, 1);
+	all->new_ins = ft_calloc(15000, sizeof(char));
 	all->i = 0;
 }
 

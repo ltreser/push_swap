@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 05:30:38 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/07 06:25:45 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/09 05:45:49 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,15 @@ void	push_swap(t_all *all)
 	t_deque *copy_a;
 
 	all->divider = 1.7;
-	//copy_a = copy_deque(all->a);
+//	copy_a = copy_deque(all->a);
+	//put_to_sleep(all->a, all->lis);
+	//find_swappies_below(all->a, all->lis->lis, all->lis->count);
+	//find_swappies_above(all->a, all->lis->lis, all->lis->count);
 	while (all->divider <= 2.7)
 	{
 		copy_a = copy_deque(all->a);
+		find_swappies_below(all->a, all->lis->lis, all->lis->count);
+		//find_swappies_above(all->a, all->lis->lis, all->lis->count);
 		put_to_sleep(all->a, all->lis);
 		sleep_test(all, all->divider);
 		back_to_a(all);

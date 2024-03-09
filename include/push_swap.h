@@ -151,6 +151,7 @@ void    calculate_average(t_deque *deque, int lis_size);
 void    decode_and_print(t_all *all, int i);
 void	check_best_moves(t_all *all);
 void	post_optimizer(t_all *all);
+void    optimizer_extension(char *ins, int i);
 
 
 

@@ -12,6 +12,24 @@
 
 #include "push_swap.h"
 
+//ra + pb + rra = sa + pb (and its opposite)
+
+void	optimizer_extension(char *ins, int i)
+{
+	if (ins[i] == '4' && ins[i + 1] == 'B' && ins[i + 2] == '7')
+	{
+		ins[i] = '1';
+		ins[i + 1] = 'B';
+		ins[i + 2] = '0';
+	}
+	if (ins[i] == '5' && ins[i + 1] == 'A' && ins[i + 2] == '8')
+	{
+		ins[i] = '2';
+		ins[i + 1] = 'A';
+		ins[i + 2] = '0';
+	}
+}
+
 void	post_optimizer(t_all *all)
 {
 	int	i;
@@ -37,6 +55,7 @@ void	post_optimizer(t_all *all)
 			all->new_ins[i] = '9';
 			all->new_ins[i + 1] = '0';
 		}
+		optimizer_extension(all->new_ins, i);
 		i++;
 	}
 }

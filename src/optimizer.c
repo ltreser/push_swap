@@ -88,7 +88,7 @@ void	check_best_moves(t_all *all)
 				all->instructions[i++] = all->new_ins[j];
 	}
 	free(all->new_ins);
-	all->new_ins = ft_calloc(15000, 1);
+	all->new_ins = calloc(15000, 1);
 	all->i = 0;
 }
 

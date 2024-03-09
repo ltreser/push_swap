@@ -20,7 +20,7 @@ void	init(t_all *all)
     all->lis = NULL;
 	all->b->head = NULL;
 	all->a->size = 0;
-	all->new_ins = ft_calloc(15000, 1);
+	all->new_ins = calloc(15000, 1);
 	all->instructions = NULL;
 	all->instruction_count = 10000000;
 	all->i = 0;

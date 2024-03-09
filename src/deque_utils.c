@@ -173,5 +173,8 @@ void	calculate_average(t_deque *deque, int lis_size)
 		travel = travel->next;
 		i++;
 	}
-	deque->average = (sum / (deque->size - lis_size));
+	if (deque->size - lis_size == 0)
+		deque->average = (sum / (deque->size - lis_size + 1));
+	else
+		deque->average = (sum / (deque->size - lis_size));
 }

@@ -55,6 +55,8 @@ void sleep_test(t_all *all, double divider)
         while (all->a->size >= all->lis->count)
         {
                 calculate_average(all->a, all->lis->count);
+		/*if (all->b->size && all->a->size > 2 && all->b->head->value < all->a->head->value && all->b->head->value > all->a->head->prev->value)
+			all->new_ins[all->i++] = pa(all->b, all->a, "");*/
                 if (!all->a->head->sleep && all->a->head->value < all->a->average && !(all->a->head->value > all->b->size * ((122 - divider * 10) / 100)))
                 {
 

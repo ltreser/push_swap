@@ -66,6 +66,7 @@ t_deque *copy_deque(t_deque *deque)
 	copy->size = deque->size;
 	copy->size_total = deque->size_total;
 	return (copy);
+	exit (0);
 }
 
 /*

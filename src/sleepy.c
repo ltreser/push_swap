@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 05:40:23 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/09 04:48:26 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/10 06:47:29 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ void put_to_sleep(t_deque *a, t_row *lis)
 		travel = travel->next;
 		j++;
 	}
+	a->sleep_count += lis->count;
 }

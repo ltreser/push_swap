@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 03:38:23 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/09 05:03:10 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/10 07:01:57 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	find_swappies_below(t_deque *a, int *lis, int count)
 				travel->has_swap = 1;
 				travel->swap_below = lis[i];
 				swap = 1;
+				a->sleep_count++;
 			}
 			travel = travel->next;
 		}
@@ -40,18 +41,18 @@ void	find_swappies_below(t_deque *a, int *lis, int count)
 	}
 }
 
-void	find_swappies_above(t_deque *a, int *lis, int count)
+void	find_swappies_above(t_deque *a, int *lis, int count, int i)
 {
 	int swap;
 	int swap_below;
 	t_node *travel;
 
 	travel = a->tail;
-	while (count--)
+	while (++i > count)
 	{		
-		while (travel->value != lis[count - 1])
+		while (travel->value != lis[i])
 		{
-			if (!travel->has_swap && travel->value < lis[count - 1] && travel->value > lis[count - 2])
+			if (!travel->has_swap && travel->value < lis[i] && i && travel->value > lis[i - 1])
 			{
 				travel->has_swap = 1;
 				swap_below = travel->value;
@@ -59,7 +60,7 @@ void	find_swappies_above(t_deque *a, int *lis, int count)
 			}
 			travel = travel->prev;
 		}
-		if (swap && travel->value == lis[count - 1])
+		if (swap && travel->value == lis[i] && a->sleep_count++)
 		{
 			travel->has_swap = 1;
 			travel->swap_below = swap_below;

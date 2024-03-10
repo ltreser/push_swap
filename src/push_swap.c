@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 05:30:38 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/10 05:09:58 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/10 07:07:55 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	sleep_test(t_all *all, double divider)
 	}*/
 	while (i--)
 	{
-		calculate_average(all->a, all->lis->count);
+		calculate_average(all->a, all->a->sleep_count);
 		if (all->b->size && all->a->head->sleep && all->a->tail->sleep
             && all->b->head->value < all->a->head->value
             && all->b->head->value > all->a->tail->value)
@@ -40,8 +40,7 @@ void	sleep_test(t_all *all, double divider)
             all->new_ins[all->i++] = pa(all->b, all->a, "");
             all->new_ins[all->i++] = ra(all->a, 1, "");
             all->a->tail->sleep = 1;
-            all->lis->count++;
-            all->lis->insert++;
+            all->a->sleep_count++;
         }
 		else if (!all->a->head->sleep && all->a->head->value < all->a->average / divider)
 		{
@@ -58,12 +57,12 @@ void	sleep_test(t_all *all, double divider)
 		}
 		else
 			all->new_ins[all->i++] = ra(all->a, 1, "");
-		if (all->a->size == all->lis->count)
+		if (all->a->size == all->a->sleep_count)
 			break ;
 	}
-	while (all->a->size >= all->lis->count)
+	while (all->a->size >= all->a->sleep_count)
 	{
-		calculate_average(all->a, all->lis->count);
+		calculate_average(all->a, all->a->sleep_count);
 		if (all->b->size && all->a->head->sleep && all->a->tail->sleep
 			&& all->b->head->value < all->a->head->value
 			&& all->b->head->value > all->a->tail->value)
@@ -71,8 +70,7 @@ void	sleep_test(t_all *all, double divider)
 			all->new_ins[all->i++] = pa(all->b, all->a, "");
 			all->new_ins[all->i++] = ra(all->a, 1, "");
 			all->a->tail->sleep = 1;
-			all->lis->count++;
-			all->lis->insert++;
+			all->a->sleep_count++;
 		}
 		else if (!all->a->head->sleep && 
 				all->a->head->value < all->a->average && 
@@ -91,7 +89,7 @@ void	sleep_test(t_all *all, double divider)
 		}
 		else
 			all->new_ins[all->i++] = ra(all->a, 1, "");
-		if (all->a->size == all->lis->count)
+		if (all->a->size == all->a->sleep_count)
 			break ;
 		// barrier += 0.3;
 	}
@@ -109,25 +107,25 @@ void	sleep_test(t_all *all, double divider)
 void	push_swap(t_all *all)
 {
 	t_deque	*copy_a;
-	int lis_size;
+	int count;
 
-	lis_size = all->lis->count;
+	count = all->lis->count;
 	all->divider = 1.7;
 	while (all->divider <= 2.7)
 	{
 		all->i = 0;
+		all->a->sleep_count = 0;
 		copy_a = copy_deque(all->a);
 		find_swappies_below(all->a, all->lis->lis, all->lis->count);
-		//find_swappies_above(all->a, all->lis->lis, all->lis->count);
+		find_swappies_above(all->a, all->lis->lis, count, -1);
 		put_to_sleep(all->a, all->lis);
 		sleep_test(all, all->divider);
 		back_to_a(all);
 		check_best_moves(all);
 		all->divider += 0.031;
+		ft_printf("sleep count: %d\n", all->a->sleep_count);
 		free_deque(all->a);
 		all->a = copy_a;
-		all->lis->count = lis_size;
-		all->lis->insert = 0;
 	}
 	// while (all->new_ins[++i])
 	//	printf("new_ins[%d] = %c\n", i, all->new_ins[i]);

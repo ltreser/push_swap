@@ -113,11 +113,12 @@ void	push_swap(t_all *all)
 
 	lis_size = all->lis->count;
 	all->divider = 1.7;
-	// copy_a = copy_deque(all->a);
 	while (all->divider <= 2.7)
 	{
 		all->i = 0;
 		copy_a = copy_deque(all->a);
+		find_swappies_below(all->a, all->lis->lis, all->lis->count);
+		//find_swappies_above(all->a, all->lis->lis, all->lis->count);
 		put_to_sleep(all->a, all->lis);
 		sleep_test(all, all->divider);
 		back_to_a(all);

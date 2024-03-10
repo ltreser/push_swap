@@ -153,7 +153,8 @@ void    decode_and_print(t_all *all, int i);
 void	check_best_moves(t_all *all);
 void	post_optimizer(t_all *all);
 void    optimizer_extension(char *ins, int i);
-
+void    find_swappies_below(t_deque *a, int *lis, int count);
+void    find_swappies_above(t_deque *a, int *lis, int count);
 
 
 # endif

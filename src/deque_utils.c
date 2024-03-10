@@ -16,7 +16,9 @@ void    print_deque(t_deque *deque)
 {
     int i;
     t_node  *travel;
+	int count;
 
+	count = 0;
     printf("size: %d\n", deque->size);
     if (!deque)
         return ;
@@ -25,12 +27,15 @@ void    print_deque(t_deque *deque)
 	//printf("print\n");
     while (++i < deque->size)
     {
-        printf("node %d: %ld, ", i, travel->value);
+		if (travel->has_swap)
+			count++;
+        printf("node %d: %ld, has swap: %d\n", i, travel->value, travel->has_swap);
         //printf("target_pos %d: %d\n", i, travel->target_pos);
 		//printf("node %d: %ld ", i, travel->value);     
 		//printf("address %p ", travel);
         //printf("prev %p ", travel->prev);
         //printf("nex %p\n", travel->next);
+		printf("swap count: %d\n", count);
         travel = travel->next;
     }
     printf("\n");

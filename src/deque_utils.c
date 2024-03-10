@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:58:17 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/09 04:07:41 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/10 05:07:06 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,11 @@ void	free_all(t_all *all)
 		if (all->a->size)
 			free_deque(all->a);
 	}
+	if (all->i)
+	{
+		free(all->instructions);
+		free(all->new_ins);
+	}
 	free(all);
 	exit (0);
 }
@@ -178,5 +183,8 @@ void	calculate_average(t_deque *deque, int lis_size)
 		travel = travel->next;
 		i++;
 	}
-	deque->average = (sum / (deque->size - lis_size));
+	if (deque->size - lis_size == 0)
+		deque->average = (sum / (deque->size - lis_size + 1));
+	else
+		deque->average = (sum / (deque->size - lis_size));
 }

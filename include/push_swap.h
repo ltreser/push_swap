@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 20:25:49 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/09 04:33:31 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/10 04:51:11 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ struct s_row
 	int *len;
 	int *prev_index;
 	int *sorted_copy;
+	int insert;
 } ;
 
 struct	s_node
@@ -151,6 +152,7 @@ void    calculate_average(t_deque *deque, int lis_size);
 void    decode_and_print(t_all *all, int i);
 void	check_best_moves(t_all *all);
 void	post_optimizer(t_all *all);
+void    optimizer_extension(char *ins, int i);
 void    find_swappies_below(t_deque *a, int *lis, int count);
 void    find_swappies_above(t_deque *a, int *lis, int count);
 

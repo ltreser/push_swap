@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 20:25:49 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/07 04:25:17 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/10 04:51:11 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ struct s_row
 	int *len;
 	int *prev_index;
 	int *sorted_copy;
+	int insert;
 } ;
 
 struct	s_node

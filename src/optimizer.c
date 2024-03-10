@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 23:54:18 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/07 04:51:30 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/10 05:10:30 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	check_best_moves(t_all *all)
 	i = -1;
 	j = -1;
 	count = 0;
+	//if (!all->i)
+		//ft_printf("i has beeen resetted!!!!!!!!!!!!!");
 	post_optimizer(all);
 	while (all->new_ins[++i])
 		if (all->new_ins[i] != '0')
@@ -78,18 +80,29 @@ void	check_best_moves(t_all *all)
 	i = 0;
 	if (count < all->instruction_count)
 	{
-		printf("UPDATE\n");
 		if (all->instructions)
 			free(all->instructions);
 		all->instruction_count = count;
 		all->instructions = malloc((count + 1) * sizeof(char));
+		if (!all->instructions)
+		{
+			free_all(all);
+			exit(0);
+		}
 		while (all->new_ins[++j])
 			if (all->new_ins[j] != '0')
 				all->instructions[i++] = all->new_ins[j];
+		all->instructions[i] = '\0';
 	}
 	free(all->new_ins);
-	all->new_ins = calloc(15000, 1);
-	all->i = 0;
+	all->new_ins = ft_calloc(50000, sizeof(char));
+	if (!all->new_ins)
+	{
+		free_all(all);
+		exit(0);
+	}
+	//if (!all->i)
+		//ft_printf("i has beeen resetted!!!!!!!!!!!!!");
 }
 
 void	decode_and_print(t_all *all, int i) // pass iterator initialized to -1

@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:58:17 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/04 23:00:25 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/10 05:07:06 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,11 @@ void	free_all(t_all *all)
 	{
 		if (all->a->size)
 			free_deque(all->a);
+	}
+	if (all->i)
+	{
+		free(all->instructions);
+		free(all->new_ins);
 	}
 	free(all);
 	exit (0);

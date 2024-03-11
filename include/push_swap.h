@@ -93,7 +93,7 @@ struct s_all
 } ;
 
 long    ft_atol(const char *av);
-int		ft_isdigit(int c);
+int	ft_isdigit(int c);
 char	ra(t_deque *a, int times, char *print_flag);
 char	rb(t_deque *b, int times, char *print_flag);
 char	rr(t_deque *a, t_deque *b, int times, char *print_flag);
@@ -107,13 +107,13 @@ char	pa(t_deque *b, t_deque *a, char *print_flag);
 char	pb(t_deque *a, t_deque *b, char *print_flag);
 void	init_p(t_deque *a, t_deque *b);
 void	print_moves(char *print_flag);
-int		stack_sorted(t_deque *a);
+int	stack_sorted(t_deque *a);
 void	append_node(t_deque *a, int value);
 void	create_stack(t_all *all, char **av, int ac);
-int		argument_error(int i, char **av, t_all *all, int j);
-int		*bubble_sort(int *copy, int size);
+int	argument_error(int i, char **av, t_all *all, int j);
+int	*bubble_sort(int *copy, int size);
 void	normalize_by_index(int size, t_all *all);
-int		duplicate_found(int *array, int n, int size);
+int	duplicate_found(int *array, int n, int size);
 void	parse_and_index(char **av, t_all *all);
 void	safe_biggest_ascending(t_all *all, int divider); //DELETE IT!
 void	row_check_ascending(t_all *all); //DELETE IT!
@@ -122,7 +122,7 @@ void    free_deque(t_deque *deque);
 void    calculate_moves(long nbr, long i, int level_depth, t_tiny *tiny);
 void    tiny_ops(t_deque *a, t_deque *b, long move, int print);
 long	check_level(t_all *all, long width, long depth);
-int		tiny_sort(t_all *all);
+int	tiny_sort(t_all *all);
 void 	exec_tiny(t_deque *a, t_deque *b, long moves);
 void    free_all(t_all *all);
 void    print_deque(t_deque *deque); //DELETE IT!
@@ -132,9 +132,9 @@ void    push_swap(t_all *all);
 void 	sleep_test(t_all *all, double divider); //DELETE IT!
 void 	put_to_sleep(t_deque *a, t_row *lis_a);
 void    init_lis(t_row *lis, int size);
-int		find_last(t_row *lis, int i, int j, int size);
-int		get_lis(t_row *lis, int i);
-int		find_lis(t_row *lis, int size_a);
+int	find_last(t_row *lis, int i, int j, int size);
+int	get_lis(t_row *lis, int i);
+int	find_lis(t_row *lis, int size_a);
 int     check_links(t_deque *a, char *name, char *stack); //DELETE IT!
 void	get_ideal_lis(t_all *all);
 void    rotate_array(int *array, int size, int x);
@@ -142,7 +142,7 @@ void    put_index(t_deque *deque);
 void    back_to_a(t_all *all);
 void    put_index(t_deque *deque);
 void    set_target_position(t_all *all);
-int		find_price(t_all *all, t_node *travel, int *dir, int mid_a);
+int	find_price(t_all *all, t_node *travel, int *dir, int mid_a);
 void    calculate_price(t_all *all);
 void    push_to_a(t_all *all);
 void    mixed_placement(t_all *all, t_node *travel);
@@ -154,7 +154,8 @@ void	check_best_moves(t_all *all);
 void	post_optimizer(t_all *all);
 void    optimizer_extension(char *ins, int i);
 void    find_swappies_below(t_deque *a, int *lis, int count);
-void    find_swappies_above(t_deque *a, int *lis, int count, int i);
+void    find_swappies_above(t_deque *a, int *lis, int i);
+void	check_swap(t_all *all);
 
 
 # endif

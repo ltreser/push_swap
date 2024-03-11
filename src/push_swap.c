@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 05:30:38 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/10 07:07:55 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/12 00:03:37 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	sleep_test(t_all *all, double divider)
 	}*/
 	while (i--)
 	{
+		check_swap(all);
 		calculate_average(all->a, all->a->sleep_count);
 		if (all->b->size && all->a->head->sleep && all->a->tail->sleep
             && all->b->head->value < all->a->head->value
@@ -62,6 +63,7 @@ void	sleep_test(t_all *all, double divider)
 	}
 	while (all->a->size >= all->a->sleep_count)
 	{
+		check_swap(all);
 		calculate_average(all->a, all->a->sleep_count);
 		if (all->b->size && all->a->head->sleep && all->a->tail->sleep
 			&& all->b->head->value < all->a->head->value
@@ -117,13 +119,12 @@ void	push_swap(t_all *all)
 		all->a->sleep_count = 0;
 		copy_a = copy_deque(all->a);
 		find_swappies_below(all->a, all->lis->lis, all->lis->count);
-		find_swappies_above(all->a, all->lis->lis, count, -1);
+		//find_swappies_above(all->a, all->lis->lis, count);
 		put_to_sleep(all->a, all->lis);
 		sleep_test(all, all->divider);
 		back_to_a(all);
 		check_best_moves(all);
 		all->divider += 0.031;
-		ft_printf("sleep count: %d\n", all->a->sleep_count);
 		free_deque(all->a);
 		all->a = copy_a;
 	}

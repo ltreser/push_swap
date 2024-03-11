@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 03:41:20 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/07 02:44:09 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/10 04:46:34 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	low_placement(t_all *all, t_node *travel)
 		ft_memset(&all->new_ins[ft_strlen(all->new_ins)], rrb(all->b, rot_b, ""), rot_b);
 	else if (rot_a)
 	{
-		//printf("enters in low placement\n");
+		//ft_printf("enters in low placement\n");
 		//printf("all->a->size: %d\n", all->a->size);
                 //printf("travel->target_pos: %d\n", travel->target_pos);
                 //printf("amount of rra: %d\n", all->a->size - travel->target_pos);
@@ -38,7 +38,7 @@ void	low_placement(t_all *all, t_node *travel)
 
 void	high_placement(t_all *all, t_node *travel)
 {
-	//printf("enters high placement \n");
+	//ft_printf("enters high placement \n");
 	all->i = ft_strlen(all->new_ins);
 	while (travel->index && travel->target_pos && travel->index-- && travel->target_pos--)
 		all->new_ins[all->i++] = rr(all->a, all->b, 1, "");
@@ -51,7 +51,7 @@ void	high_placement(t_all *all, t_node *travel)
 
 void	mixed_placement(t_all *all, t_node *travel)
 {
-	//printf("enters mixed placement\n");
+	//ft_printf("enters mixed placement\n");
 	if (travel->lower_half)
 	{
 		ft_memset(&all->new_ins[ft_strlen(all->new_ins)], rrb(all->b, (all->b->size - travel->index), ""), all->b->size - travel->index);

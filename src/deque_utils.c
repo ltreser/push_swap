@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:58:17 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/04 23:00:25 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/10 05:07:06 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void    print_deque(t_deque *deque)
 {
     int i;
     t_node  *travel;
+	int count;
 
+	count = 0;
     printf("size: %d\n", deque->size);
     if (!deque)
         return ;
@@ -25,12 +27,15 @@ void    print_deque(t_deque *deque)
 	//printf("print\n");
     while (++i < deque->size)
     {
-        printf("node %d: %ld, ", i, travel->value);
+		if (travel->has_swap)
+			count++;
+        printf("node %d: %ld, has swap: %d\n", i, travel->value, travel->has_swap);
         //printf("target_pos %d: %d\n", i, travel->target_pos);
 		//printf("node %d: %ld ", i, travel->value);     
 		//printf("address %p ", travel);
         //printf("prev %p ", travel->prev);
         //printf("nex %p\n", travel->next);
+		printf("swap count: %d\n", count);
         travel = travel->next;
     }
     printf("\n");
@@ -123,6 +128,11 @@ void	free_all(t_all *all)
 		if (all->a->size)
 			free_deque(all->a);
 	}
+	if (all->i)
+	{
+		free(all->instructions);
+		free(all->new_ins);
+	}
 	free(all);
 	exit (0);
 }
@@ -173,5 +183,8 @@ void	calculate_average(t_deque *deque, int lis_size)
 		travel = travel->next;
 		i++;
 	}
-	deque->average = (sum / (deque->size - lis_size));
+	if (deque->size - lis_size == 0)
+		deque->average = (sum / (deque->size - lis_size + 1));
+	else
+		deque->average = (sum / (deque->size - lis_size));
 }

@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 05:40:23 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/05 02:55:36 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/10 06:47:29 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ void put_to_sleep(t_deque *a, t_row *lis)
 		i = 0;
 		while (i < lis->count)
 		{
-			if (travel->value == lis->lis[i] && k--)
+			if ((travel->value == lis->lis[i] || travel->has_swap) && k--)
 				travel->sleep = 1;
 			i++;
 		}
 		travel = travel->next;
 		j++;
 	}
+	a->sleep_count += lis->count;
 }

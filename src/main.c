@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:25:28 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/05 21:44:24 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/09 04:23:17 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	append_node(t_deque *a, int value)
 			return ;
 		a->tail->value = value;
 		a->tail->sleep = 0;
+		a->tail->has_swap = 0;
 		a->tail->next = a->head;
 		a->tail->prev = a->head->prev;
 		a->head->prev->next = a->tail;
@@ -56,6 +57,7 @@ void	append_node(t_deque *a, int value)
 			return ;
 		a->head->value = value;
 		a->head->sleep = 0;
+		a->head->has_swap = 0;
 		a->head->next = a->head;
 		a->head->prev = a->head;
 	}

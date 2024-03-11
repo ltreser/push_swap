@@ -95,11 +95,17 @@ struct s_all
 long    ft_atol(const char *av);
 int	ft_isdigit(int c);
 char	ra(t_deque *a, int times, char *print_flag);
+void	ra2(t_all *all, int times, char *print_flag);
 char	rb(t_deque *b, int times, char *print_flag);
+void	rb2(t_all *all, int times, char *print_flag);
 char	rr(t_deque *a, t_deque *b, int times, char *print_flag);
+void	rr2(t_all *all, int times, char *print_flag);
 char	rra(t_deque *a, int times, char *print_flag);
+void	rra2(t_all *all, int times, char *print_flag);
 char	rrb(t_deque *b, int times, char *print_flag);
+void	rrb2(t_all *all, int times, char *print_flag);
 char	rrr(t_deque *a, t_deque *b, int times, char *print_flag);
+void rrr2(t_all *all, int times, char *print_flag);
 char	sa(t_deque *a, char *print_flag);
 char	sb(t_deque *b, char *print_flag);
 char	ss(t_deque *a, t_deque *b, char *print_flag);

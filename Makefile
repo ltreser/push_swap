@@ -3,7 +3,7 @@ NAME = push_swap
 SRC = lis.c  array_utils.c  main.c  back2a_exec.c  init.c  optimizer.c \
       back2a_init.c instructions.c instructionss.c instructionsss.c \
       parse_and_index.c  sleepy.c  deque_utils.c  tiny_sort.c  error_free.c \
-      push_swap.c  swappy.c \
+      push_swap.c  swappy.c  instructions2.c  instructionss2.c  \
 
 SRC_DIR = src/
 

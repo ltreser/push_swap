@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 03:38:23 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/10 07:01:57 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/12 00:33:55 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	check_swap(t_all *all)
 		else 
 		all->new_ins[all->i++] = sa(all->a, "");
 	}
-
+/*
 	else if (all->a->head->has_swap && all->a->tail->has_swap && all->a->tail->swap_below == all->a->head->value)
 	{
 		all->a->head->has_swap = 0;
@@ -94,6 +94,6 @@ void	check_swap(t_all *all)
             all->new_ins[all->i++] = ss(all->a, all->b, "");
         else
 			all->new_ins[all->i++] = sa(all->a, "");
-	}
+	}*/
 }
 

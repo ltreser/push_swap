@@ -6,13 +6,11 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 23:54:18 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/10 05:10:30 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/12 09:29:55 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-//ra + pb + rra = sa + pb (and its opposite)
 
 void	optimizer_extension(char *ins, int i)
 {
@@ -34,8 +32,8 @@ void	post_optimizer(t_all *all)
 {
 	int	i;
 
-	i = 0;
-	while (all->new_ins[i])
+	i = -1;
+	while (all->new_ins[++i])
 	{
 		if ((all->new_ins[i] == '1' && all->new_ins[i + 1] == '2')
 			|| (all->new_ins[i] == '2' && all->new_ins[i + 1] == '1'))
@@ -56,7 +54,6 @@ void	post_optimizer(t_all *all)
 			all->new_ins[i + 1] = '0';
 		}
 		optimizer_extension(all->new_ins, i);
-		i++;
 	}
 }
 
@@ -69,14 +66,10 @@ void	check_best_moves(t_all *all)
 	i = -1;
 	j = -1;
 	count = 0;
-	//if (!all->i)
-		//ft_printf("i has beeen resetted!!!!!!!!!!!!!");
 	post_optimizer(all);
 	while (all->new_ins[++i])
 		if (all->new_ins[i] != '0')
 			count++;
-	//printf("divider is now: %f\n", all->divider);
-	//printf("count is now: %d\n", count);
 	i = 0;
 	if (count < all->instruction_count)
 	{
@@ -84,11 +77,6 @@ void	check_best_moves(t_all *all)
 			free(all->instructions);
 		all->instruction_count = count;
 		all->instructions = malloc((count + 1) * sizeof(char));
-		if (!all->instructions)
-		{
-			free_all(all);
-			exit(0);
-		}
 		while (all->new_ins[++j])
 			if (all->new_ins[j] != '0')
 				all->instructions[i++] = all->new_ins[j];
@@ -96,18 +84,10 @@ void	check_best_moves(t_all *all)
 	}
 	free(all->new_ins);
 	all->new_ins = ft_calloc(50000, sizeof(char));
-	if (!all->new_ins)
-	{
-		free_all(all);
-		exit(0);
-	}
-	//if (!all->i)
-		//ft_printf("i has beeen resetted!!!!!!!!!!!!!");
 }
 
-void	decode_and_print(t_all *all, int i) // pass iterator initialized to -1
+void	decode_and_print(t_all *all, int i)
 {
-	//write(1, "instructions should start here:\n", 33);
 	while (all->instructions[++i])
 	{
 		if (all->instructions[i] == '1')

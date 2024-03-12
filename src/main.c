@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:25:28 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/09 04:23:17 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/12 09:57:32 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	stack_sorted(t_deque *a)
 {
-	//printf("a size: %d\n", a->size);
-	//printf("a size total: %d\n", a->size_total);
 	if (!a || a->size < a->size_total)
 		return (0);
 	t_node *travel;
@@ -25,13 +23,11 @@ int	stack_sorted(t_deque *a)
 	travel = a->head;
 	while (i < (a->size - 1))
 	{
-		//printf("comparing %ld and %ld\n", travel->value, travel->next->value);
 		if (travel->value > travel->next->value)
 			return (0);
 		travel = travel->next;
 		i++;
 	}
-	printf("FOUND SORTED!!!\n");
 	return (1);
 }
 
@@ -127,7 +123,6 @@ int	main(int ac, char **av)
 		else
 			push_swap(all);
 	}
-	printf("lis size: %d\n", all->lis->count);
 	free_all(all);
 	return (0);
 }

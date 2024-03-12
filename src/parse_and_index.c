@@ -6,20 +6,16 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 23:41:25 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/01 21:09:24 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/12 09:46:59 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int *bubble_sort(int *copy, int size)
+int *bubble_sort(int *copy, int size, int i, int j)
 {
-	int i;
-	int j;
 	int temp;
 
-	i = 0;
-	j = 0;
 	temp = 0;
 	while (i++ < (size - 1))
 	{
@@ -119,6 +115,6 @@ void parse_and_index(char **av, t_all *all)
 		all->lis->sorted_copy[i] = all->lis->array[i];
 		i++;
 	}
-	all->lis->sorted_copy = bubble_sort(all->lis->sorted_copy, all->a->size);
+	all->lis->sorted_copy = bubble_sort(all->lis->sorted_copy, all->a->size, 0, 0);
 	normalize_by_index(all->a->size, all);
 }

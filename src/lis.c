@@ -6,17 +6,17 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 22:44:27 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/01 22:38:11 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/12 09:42:40 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "push_swap.h"
 
 void	init_lis(t_row *lis, int size_a)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (lis->count)
@@ -27,17 +27,17 @@ void	init_lis(t_row *lis, int size_a)
 	lis->len = malloc(size_a * sizeof(int));
 	while (i < size_a)
 		lis->len[i++] = 1;
-	lis->prev_index = malloc (size_a * sizeof(int));
+	lis->prev_index = malloc(size_a * sizeof(int));
 	i = 0;
 	while (i < size_a)
 		lis->prev_index[i++] = 0;
 }
 
-int find_last(t_row *lis, int i, int j, int size)
+int	find_last(t_row *lis, int i, int j, int size)
 {
 	i = lis->len[0];
 	j = 1;
-	while(j < size)
+	while (j < size)
 	{
 		if (lis->len[j] > lis->len[i])
 			i = j;
@@ -48,9 +48,9 @@ int find_last(t_row *lis, int i, int j, int size)
 
 int	get_lis(t_row *lis, int i)
 {
-	int len;
-	int size_lis;
-	
+	int	len;
+	int	size_lis;
+
 	len = lis->len[i] - 1;
 	size_lis = lis->len[i];
 	if (lis->count > size_lis)
@@ -71,13 +71,8 @@ int	get_lis(t_row *lis, int i)
 	return (0);
 }
 
-int	find_lis(t_row *lis, int size)
+int	find_lis(t_row *lis, int size, int i, int j)
 {
-	int i;
-	int j;
-
-	i = 1;
-	j = 0;
 	init_lis(lis, size);
 	while (i < size)
 	{
@@ -86,7 +81,7 @@ int	find_lis(t_row *lis, int size)
 		{
 			if (lis->array[j] < lis->array[i])
 			{
-				if((lis->len[j] + 1) >= lis->len[i])
+				if ((lis->len[j] + 1) >= lis->len[i])
 				{
 					lis->len[i] = (lis->len[j] + 1);
 					lis->prev_index[i] = j;
@@ -101,4 +96,3 @@ int	find_lis(t_row *lis, int size)
 		return (0);
 	return (1);
 }
-

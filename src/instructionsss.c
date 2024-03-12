@@ -6,16 +6,16 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 19:11:22 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/05 23:29:43 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/12 09:26:57 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void init_p(t_deque *a, t_deque *b)
+void	init_p(t_deque *a, t_deque *b)
 {
 	if (0 == b->size)
-    {
+	{
 		a->tail->next = a->head->next;
 		a->head->next->prev = a->tail;
 		b->head = a->head;
@@ -25,10 +25,10 @@ void init_p(t_deque *a, t_deque *b)
 		b->tail = b->head;
 		b->tail->next = b->head->next;
 		b->tail->prev = b->head->prev;
-    }
+	}
 }
 
-char pb(t_deque *a, t_deque *b, char *print_flag)
+char	pb(t_deque *a, t_deque *b, char *print_flag)
 {
 	if (a->size < 1)
 		return ('0');
@@ -49,16 +49,12 @@ char pb(t_deque *a, t_deque *b, char *print_flag)
 	}
 	a->size--;
 	b->size++;
-	//printf("b->size after pb: %d\n", b->size);
-	//check_links(a, "pb", "a");
-	//check_links(b, "pb", "b");
 	print_moves(print_flag);
 	return ('B');
 }
 
 void	push_last(t_deque *b, t_deque *a)
 {
-	//printf("enters push_last\n");
 	a->tail->next = b->head;
 	a->head->prev = b->head;
 	b->head->next = a->head;
@@ -68,7 +64,7 @@ void	push_last(t_deque *b, t_deque *a)
 	b->tail = NULL;
 }
 
-char pa(t_deque *b, t_deque *a, char *print_flag)
+char	pa(t_deque *b, t_deque *a, char *print_flag)
 {
 	if (b->size < 1)
 		return ('0');
@@ -89,32 +85,17 @@ char pa(t_deque *b, t_deque *a, char *print_flag)
 	}
 	b->size--;
 	a->size++;
-	//printf("b->size: %d\n", b->size);
-	//check_links(a, "pa", "a");
-	//check_links(b, "pa", "b");
 	print_moves(print_flag);
 	return ('A');
 }
 
-void print_moves(char *print_flag)
+void	print_moves(char *print_flag)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if (!print_flag[i]/* && all->size_total > 6*/)
+	if (!print_flag[i])
 		return ;
-	/*if (!print_flag[i])
-	{
-		if (!all->new_ins)
-		{
-			all->new_ins = malloc(2 * sizeof(char));
-			all->new_ins[i++] = identifier;
-			all->new_ins[i] = '\0';
-		}
-		else 
-			all->new_ins = ft_strjoin(all_new_ins, &identifier);
-		all->new_ins_count++;
-	}*/
 	while (print_flag[i])
 	{
 		write(1, &print_flag[i], 1);

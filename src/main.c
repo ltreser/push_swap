@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:25:28 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/12 09:57:32 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/12 23:53:49 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,33 +78,21 @@ void create_stack(t_all *all, char **av, int  ac)
 	}
 }
 
-int	argument_error(int i, char **av, t_all *all, int j)
+void	argument_check(int ac, char **av, t_all *all)
 {
-	if (i > 2147483647 && (free(all), 1))
-		exit (0);
-	if (1 == i && (free(all), 1))
-		exit (0);
-    if (2 == i && write(1, "already sorted\n", 14))
-    {
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	if (non_numeric(av) || (ac == 2 && !av[0][0]))
+	{
+		write(1, "Error\n", 6);
 		free(all);
 		exit(0);
-	}	
-	i = 0;
-	while (av[i] && (av[i][j]))
-	{
-		j = 0;
-		while (av[i] && av[i][j])
-		{
-			if (!j && !(ft_isdigit(av[i][j]) || 
-			(av[i][j] == '+' || av[i][j] == '-')))
-				return (free(all), 1);
-			if (j && !ft_isdigit(av[i][j]))
-				return (free(all), 1);
-			j++;
-		}
-		i++;
 	}
-	return (0);
+	if ((ac == 2 || ac == 1) && (free(all), 1))
+		exit (0);
 }
 
 int	main(int ac, char **av)
@@ -112,8 +100,7 @@ int	main(int ac, char **av)
 	t_all *all;
 
 	all = malloc(sizeof(t_all));
-	if (argument_error(ac, av + 1, all, 0))
-		return (0); //how to give error message?
+	argument_check(ac, av + 1, all);
 	init(all);
 	create_stack(all, av + 1, ac - 1);
 	if (!stack_sorted(all->a))

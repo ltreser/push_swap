@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 20:25:49 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/12 09:57:45 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/13 02:08:44 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ struct					s_tiny
 {
 	long				*moves;
 	long				ideal_moves;
-	t_deque				*copy_a;
-	t_deque				*copy_b;
+	t_deque				*cpy_a;
+	t_deque				*cpy_b;
 };
 
 struct					s_row
@@ -113,20 +113,20 @@ int						argument_error(int i, char **av, t_all *all, int j);
 int						*bubble_sort(int *copy, int size, int i, int j);
 void					normalize_by_index(int size, t_all *all);
 int						duplicate_found(int *array, int n, int size);
-void					parse_and_index(char **av, t_all *all);
+int						parse_and_index(char **av, t_all *all);
 t_deque					*copy_deque(t_deque *deque);
 void					free_deque(t_deque *deque);
 void					calculate_moves(long nbr, long i, int level_depth,
 							t_tiny *tiny);
 void					tiny_ops(t_deque *a, t_deque *b, long move, int print);
-long					check_level(t_all *all, long width, long depth);
+long					check_level(t_all *all, long width, long depth, long move);
 int						tiny_sort(t_all *all);
 void					exec_tiny(t_deque *a, t_deque *b, long moves);
 void					free_all(t_all *all);
 void					init(t_all *all);
 void					push_last(t_deque *b, t_deque *a);
 void					push_swap(t_all *all);
-void					sleep_test(t_all *all, double divider); // DELETE IT!
+void	sleep_test(t_all *all, double divider); // DELETE IT!
 void					put_to_sleep(t_deque *a, t_row *lis_a, int lis_len);
 void					init_lis(t_row *lis, int size);
 int						find_last(t_row *lis, int i, int j, int size);
@@ -137,7 +137,7 @@ void					rotate_array(int *array, int size, int x);
 void					put_index(t_deque *deque);
 void					back_to_a(t_all *all);
 void					put_index(t_deque *deque);
-void					set_target_position(t_all *all);
+void					set_target_pos(t_all *all, t_node *i_a, t_node *i_b, int ib);
 int						find_price(t_all *all, t_node *travel, int *dir,
 							int mid_a);
 void					calculate_price(t_all *all);
@@ -151,5 +151,9 @@ void					check_best_moves(t_all *all);
 void					post_optimizer(t_all *all);
 void					optimizer_extension(char *ins, int i);
 void					divider_bf(t_all *all, int i);
+int						non_numeric(char **av);
+void					smallest_up(t_all *all);
+void					free_rest(t_all *all);
+void					check_level_init(t_all *all);
 
 #endif

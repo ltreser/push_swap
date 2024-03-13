@@ -6,15 +6,15 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 23:41:25 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/12 09:46:59 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/13 01:37:38 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int *bubble_sort(int *copy, int size, int i, int j)
+int	*bubble_sort(int *copy, int size, int i, int j)
 {
-	int temp;
+	int	temp;
 
 	temp = 0;
 	while (i++ < (size - 1))
@@ -34,10 +34,10 @@ int *bubble_sort(int *copy, int size, int i, int j)
 	return (copy);
 }
 
-void normalize_by_index(int size, t_all *all)
+void	normalize_by_index(int size, t_all *all)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -49,7 +49,6 @@ void normalize_by_index(int size, t_all *all)
 			if (all->lis->array[i] == all->lis->sorted_copy[j])
 			{
 				all->lis->array[i] = j;
-				//printf("printing: %d\n", a->a_row->array[i]);
 			}
 			j++;
 		}
@@ -59,7 +58,7 @@ void normalize_by_index(int size, t_all *all)
 
 int	duplicate_found(int *array, int n, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!array)
@@ -73,12 +72,11 @@ int	duplicate_found(int *array, int n, int size)
 	return (0);
 }
 
-static void parse_init(t_all *all)
+static void	parse_init(t_all *all)
 {
 	all->lis = malloc(sizeof(t_row));
 	if (!all->lis)
 		return ;
-
 	all->lis->lis = NULL;
 	all->lis->len = NULL;
 	all->lis->prev_index = NULL;
@@ -90,12 +88,12 @@ static void parse_init(t_all *all)
 	all->lis->sorted_copy = malloc(all->a->size * sizeof(int));
 	if (!all->lis->sorted_copy)
 		return ;
-}	
+}
 
-void parse_and_index(char **av, t_all *all)
+int	parse_and_index(char **av, t_all *all)
 {
-	int i;
-	long n;
+	int		i;
+	long	n;
 
 	i = 0;
 	parse_init(all);
@@ -103,18 +101,18 @@ void parse_and_index(char **av, t_all *all)
 	{
 		n = ft_atol(av[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			free_all(all);
-		if (duplicate_found(all->lis->array, (int)n, i))
+			return (write(1, "Error\n", 6), free_all(all), 0);
+		if (duplicate_found(all->lis->array, (int)n, i) && write(1, "Error\n",
+				6))
 			free_all(all);
 		all->lis->array[i] = (int)n;
 		i++;
 	}
-	i = 0;
-	while (i < all->a->size)
-	{
+	i = -1;
+	while (++i < all->a->size)
 		all->lis->sorted_copy[i] = all->lis->array[i];
-		i++;
-	}
-	all->lis->sorted_copy = bubble_sort(all->lis->sorted_copy, all->a->size, 0, 0);
+	all->lis->sorted_copy = bubble_sort(all->lis->sorted_copy, all->a->size, 0,
+			0);
 	normalize_by_index(all->a->size, all);
+	return (0);
 }

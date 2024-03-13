@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 00:02:59 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/10 04:45:18 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/13 02:10:16 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,16 @@
 
 void	back_to_a(t_all *all)
 {
-	t_node *travel;
-	//int i;
-
-	//i = 12;
-	travel = all->a->head;
 	while (all->b->size)
 	{
 		put_index(all->a);
 		put_index(all->b);
-		set_target_position(all);
+		if (all->b->size)
+			set_target_pos(all, all->a->head, all->b->head, -1);
 		calculate_price(all);
 		push_to_a(all);
 	}
-	put_index(all->a);
-	if (all->a->head->value == 0)
-		return ;
-	while (1) //get right later
-	{
-		travel = travel->next;
-		if (travel->value == 0)
-			break ;
-	}
-	if (travel->lower_half)
-	{
-		//ft_printf("i before fishy line: %d\n", all->i);
-		ft_memset(&all->new_ins[ft_strlen(all->new_ins)], rra(all->a, (all->a->size - travel->index), ""), (all->a->size - travel->index));
-		//ft_printf("i after fishy line: %d\n", all->i);
-	}
-	else
-		ft_memset(&all->new_ins[ft_strlen(all->new_ins)], ra(all->a, travel->index, ""), travel->index);
-	//print_deque(all->a);
-	//while (all->a->head->value > 0)
-	//	ra(all->a, 1, "ra");
-	
+	smallest_up(all);
 }
 
 void	put_index(t_deque *deque)
@@ -67,10 +43,10 @@ void	put_index(t_deque *deque)
 	{
 		travel->index = i;
 		travel->target_pos = -1;
-		if (travel->value >= deque->max && (deque->max_index = i, 1))
-			deque->max = travel->value;
-		if (travel->value <= deque->min && (deque->min_index = i, 1))
-			deque->min = travel->value;
+		if (travel->value >= deque->max)
+			(free(NULL), deque->max = travel->value, deque->max_index = i);
+		if (travel->value <= deque->min)
+			(free(NULL), deque->min = travel->value, deque->min_index = i);
 		if (i >= (deque->size / 2))
 			travel->lower_half = 1;
 		else if (i < (deque->size / 2))
@@ -79,60 +55,31 @@ void	put_index(t_deque *deque)
 	}
 }
 
-void	set_target_position(t_all *all)
+void	set_target_pos(t_all *all, t_node *i_a, t_node *i_b, int ib)
 {
+	int	target_node;
+	int	ia;
 
-	/*printf("\n\n\n\n____NEXT NODE____\n");	
-	printf("DEQUE A: ");
-	print_deque(all->a);
-	printf("DEQUE B: ");
-	print_deque(all->b);*/
-	int		target_node;
-	int		ib;
-	int		ia;
-	t_node	*travel_a;
-	t_node	*travel_b;
-
-	if (!all->b->size) // later with swaps in case of sorted only with swaps, error here
-		return ;
-	ia = 0;
-	ib = 0;
-	travel_a = all->a->head;
-	travel_b = all->b->head;
-	target_node = -1;
-	while (ib < all->b->size)
+	while (++ib < all->b->size)
 	{
-		//printf("new node: %ld\n", travel_b->value);
-		ia = 0;
-		target_node = -1;
-		//printf("target_pos should be -1 and is: %d\n", travel_b->target_pos);
-		while (ia < all->a->size)
+		(free(NULL), ia = -1, target_node = -1);
+		while (++ia < all->a->size)
 		{
-			if (-1 == travel_b->target_pos && travel_a->value > travel_b->value)
+			if (-1 == i_b->target_pos && i_a->value > i_b->value)
 			{
-				target_node = travel_a->value;
-				travel_b->target_pos = travel_a->index;
-				//printf("target node for node %d is being set to: %d\n", ib, target_node);
-				//printf("target pos for node %d is being set to: %d\n", ib, travel_b->target_pos);
+				target_node = i_a->value;
+				i_b->target_pos = i_a->index;
 			}
-			if (travel_a->value > travel_b->value && travel_a->value < target_node)
+			if (i_a->value > i_b->value && i_a->value < target_node)
 			{
-				travel_b->target_pos = travel_a->index;
-				target_node = travel_a->value;
-				//printf("target node for node %d is being set to: %d\n", ib, target_node);
-				//printf("target pos for node %d is being set to: %d\n", ib, travel_b->target_pos);
+				i_b->target_pos = i_a->index;
+				target_node = i_a->value;
 			}
-			travel_a = travel_a->next;
-			ia++;
+			i_a = i_a->next;
 		}
-		if (-1 == travel_b->target_pos)
-		{
-			travel_b->target_pos = all->a->min_index;
-		//printf("target pos for node %d is being set to: %d\n", ib, travel_b->target_pos);
-		}
-		//printf("\n");
-		travel_b = travel_b->next;
-		ib++;
+		if (-1 == i_b->target_pos)
+			i_b->target_pos = all->a->min_index;
+		i_b = i_b->next;
 	}
 }
 
@@ -147,7 +94,8 @@ int	find_price(t_all *all, t_node *travel, int *dir, int mid_a)
 	}
 	else if (travel->lower_half && travel->target_pos >= mid_a && (*dir = 2, 1))
 	{
-		if ((all->b->size - travel->index) > (all->a->size - travel->target_pos))
+		if ((all->b->size - travel->index) > (all->a->size
+				- travel->target_pos))
 			travel->push_price = all->b->size - travel->index;
 		else
 			travel->push_price = all->a->size - travel->target_pos;
@@ -163,32 +111,30 @@ int	find_price(t_all *all, t_node *travel, int *dir, int mid_a)
 		if (travel->target_pos >= (all->a->size / 2))
 			travel->push_price += all->a->size - travel->target_pos;
 	}
-	return (travel->push_price);	
+	return (travel->push_price);
 }
 
 void	calculate_price(t_all *all)
 {
-	int i;
-	int dir;
-	int best_price;
-	t_node *travel;
+	int		i;
+	int		dir;
+	int		best_price;
+	t_node	*travel;
 
 	i = 0;
 	best_price = 1000000;
 	travel = all->b->head;
 	while (i < all->b->size)
-    {
-        dir = 0;
-        travel->push_price = find_price(all, travel, &dir, (all->a->size / 2));
-        if (travel->push_price < best_price)
-        {
-            best_price = travel->push_price;
-            all->b->cheapest_index = travel->index;
-            all->b->cheapest_todo = dir;
-        }
-        travel = travel->next;
-        i++;
-    }
-
-	
+	{
+		dir = 0;
+		travel->push_price = find_price(all, travel, &dir, (all->a->size / 2));
+		if (travel->push_price < best_price)
+		{
+			best_price = travel->push_price;
+			all->b->cheapest_index = travel->index;
+			all->b->cheapest_todo = dir;
+		}
+		travel = travel->next;
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 #    By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/04 02:24:33 by ltreser           #+#    #+#              #
-#    Updated: 2024/03/04 02:35:35 by ltreser          ###   ########.fr        #
+#    Updated: 2024/03/13 01:34:48 by ltreser          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_SRCS	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 	ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c \
 	ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
 	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
-	ft_lstiter.c  ft_atol.c \
+	ft_lstiter.c  ft_atol.c  \
 	ft_lstmap.c ft_lstnew.c ft_lstsize.c ft_lstlast.c \
 
 LIBFT_OBJS	= $(LIBFT_SRCS:.c=.o)

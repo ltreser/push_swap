@@ -6,7 +6,7 @@
 /*   By: ltreser <ltreser@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 03:41:20 by ltreser           #+#    #+#             */
-/*   Updated: 2024/03/12 09:32:27 by ltreser          ###   ########.fr       */
+/*   Updated: 2024/03/13 01:02:42 by ltreser          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,29 @@ void	push_to_a(t_all *all)
 		high_placement(all, travel);
 	if (2 == all->b->cheapest_todo)
 		low_placement(all, travel);
+}
+
+void	smallest_up(t_all *all)
+{
+	t_node	*travel;
+
+	travel = all->a->head;
+	put_index(all->a);
+	if (all->a->head->value == 0)
+		return ;
+	while (1)
+	{
+		travel = travel->next;
+		if (travel->value == 0)
+			break ;
+	}
+	if (travel->lower_half)
+	{
+		ft_memset(&all->new_ins[ft_strlen(all->new_ins)], rra(all->a,
+				(all->a->size - travel->index), ""), (all->a->size
+				- travel->index));
+	}
+	else
+		ft_memset(&all->new_ins[ft_strlen(all->new_ins)], ra(all->a,
+				travel->index, ""), travel->index);
 }
